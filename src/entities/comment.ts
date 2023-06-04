@@ -24,7 +24,10 @@ class Comment {
 
 	constructor(formData: Record<string, string>) {
 		this.id = formData["_id"] ?? crypto.randomUUID();
-		this.parentID = formData["_parentID"];
+
+		// NOTE: _parentID could also be an empty string
+		this.parentID = formData["_parentID"] ? formData["_parentID"] : undefined;
+
 		this.commentor = {
 			name: formData["name"],
 			email: formData["email"],
